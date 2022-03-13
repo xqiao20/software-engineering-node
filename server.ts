@@ -18,18 +18,18 @@ import LikeController from "./controllers/LikeController";
 import mongoose from "mongoose";
 var cors = require('cors')
 
-// build the connection string
-const PROTOCOL = "mongodb+srv";
-const DB_USERNAME = process.env.DB_USERNAME;
-const DB_PASSWORD = process.env.DB_PASSWORD;
-// const HOST = "cluster0.m8jeh.mongodb.net";
-const HOST = "cluster0.mobx9.mongodb.net";
-const DB_NAME = "myFirstDatabase";
-const DB_QUERY = "retryWrites=true&w=majority";
-const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;
-// connect to the database
-mongoose.connect(connectionString);
-
+// // build the connection string
+// const PROTOCOL = "mongodb+srv";
+// const DB_USERNAME = process.env.DB_USERNAME;
+// const DB_PASSWORD = process.env.DB_PASSWORD;
+// // const HOST = "cluster0.m8jeh.mongodb.net";
+// const HOST = "cluster0.mobx9.mongodb.net";
+// const DB_NAME = "myFirstDatabase";
+// const DB_QUERY = "retryWrites=true&w=majority";
+// const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;
+// // connect to the database
+// mongoose.connect(connectionString);
+mongoose.connect("mongodb+srv://giuseppi:supersecretpassword@cluster0.mobx9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
 const app = express();
 app.use(express.json());
