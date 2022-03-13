@@ -29,6 +29,7 @@ var cors = require('cors')
 // const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;
 // // connect to the database
 // mongoose.connect(connectionString);
+
 mongoose.connect("mongodb+srv://giuseppi:supersecretpassword@cluster0.mobx9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
 const app = express();
