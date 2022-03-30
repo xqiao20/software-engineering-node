@@ -22,7 +22,8 @@ import GroupController from "./controllers/GroupController";
 import DislikeController from "./controllers/DislikeController";
 const cors = require("cors");
 const session = require("express-session");
-
+import dotenv from "dotenv";
+dotenv.config();
 // build the connection string
 // const PROTOCOL = "mongodb+srv";
 // const DB_USERNAME = process.env.DB_USERNAME;
