@@ -40,6 +40,7 @@ app.use(cors({
     credentials: true,
     origin: "https://teal-alpaca-f207d4.netlify.app"
 }));
+//"http://localhost:3000"
 
 const SECRET = 'process.env.SECRET';
 let sess = {
