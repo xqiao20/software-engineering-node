@@ -38,7 +38,7 @@ mongoose.connect("mongodb+srv://giuseppi:supersecretpassword@cluster0.mobx9.mong
 const app = express();
 app.use(cors({
     credentials: true,
-    origin: process.env.CORS_ORIGIN
+    origin: "https://teal-alpaca-f207d4.netlify.app"
 }));
 
 const SECRET = 'process.env.SECRET';
