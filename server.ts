@@ -34,7 +34,7 @@ dotenv.config();
 // // const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;// connect to the database
 // const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;// connect to the database
 // mongoose.connect(connectionString);
-mongoose.connect("mongodb+srv://giuseppi:supersecretpassword@cluster0.mobx9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+mongoose.connect(`${process.env.DB_LINK}`)
 
 const app = express();
 app.use(cors({
@@ -42,9 +42,8 @@ app.use(cors({
     origin:process.env.CORS_ORIGIN
 }));
 
-
 let sess = {
-    secret: process.env.SECRET,
+    secret: process.env.EXPRESS_SESSION_SECRET,
     saveUninitialized: true,
     resave: true,
     cookie: {
