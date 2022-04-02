@@ -100,6 +100,9 @@ export default class LikeController implements LikeControllerI {
         const tid = req.params.tid;
         // @ts-ignore
         const profile = req.session['profile'];
+        if(uid === "me" && !profile){
+            res.sendStatus(403);
+        }
         const userId = uid === "me" && profile ?
             profile._id : uid;
         try {
