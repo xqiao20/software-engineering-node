@@ -39,7 +39,7 @@ mongoose.connect(`${process.env.DB_LINK}`)
 const app = express();
 app.use(cors({
     credentials: true,
-    origin:"https://teal-alpaca-f207d4.netlify.app"
+    origin:true
 }));
 
 //"https://teal-alpaca-f207d4.netlify.app"
