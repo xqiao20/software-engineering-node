@@ -70,6 +70,7 @@ export default class DislikeController implements DislikeControllerI {
         const profile = req.session['profile'];
         if(uid === "me" && !profile){
             res.sendStatus(403);
+            return;
         }
         const userId = uid === "me" && profile ?
             profile._id : uid;
@@ -101,6 +102,7 @@ export default class DislikeController implements DislikeControllerI {
         const profile = req.session['profile'];
         if(uid === "me" && !profile){
             res.sendStatus(403);
+            return;
         }
         const userId = uid === "me" && profile ?
             profile._id : uid;
@@ -129,6 +131,7 @@ export default class DislikeController implements DislikeControllerI {
         const profile = req.session['profile'];
         if(uid === "me" && !profile){
             res.sendStatus(403);
+            return;
         }
 
         const userId = uid === "me" && profile ?

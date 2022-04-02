@@ -80,6 +80,7 @@ export default class TuitController implements TuitControllerI {
         const profile = req.session['profile'];
         if(uid === "me" && !profile){
             res.sendStatus(403);
+            return;
         }
 
         const userId = uid === "me" && profile ?
