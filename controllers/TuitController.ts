@@ -75,16 +75,15 @@ export default class TuitController implements TuitControllerI {
      * body formatted as JSON arrays containing the tuit objects
      */
     findAllTuitsByUser = (req: Request, res: Response) => {
+        const uid = req.params.uid;
         // @ts-ignore
-        let userId = req.params.uid === "me" && req.session['profile'] ?
-            // @ts-ignore
-            req.session['profile']._id : req.params.uid;
-
-        console.log(userId);
-        if (userId === "me") {
-            res.sendStatus(503);
-            return;
+        const profile = req.session['profile'];
+        if(uid === "me" && !profile){
+            res.sendStatus(403);
         }
+
+        const userId = uid === "me" && profile ?
+            profile._id : uid;
 
         TuitController.tuitDao.findAllTuitsByUser(userId)
             .then((tuits: Tuit[]) => res.json(tuits));
