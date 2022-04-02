@@ -42,6 +42,7 @@ app.use(cors({
     origin:"https://teal-alpaca-f207d4.netlify.app"
 }));
 
+//"https://teal-alpaca-f207d4.netlify.app"
 let sess = {
     secret: process.env.EXPRESS_SESSION_SECRET,
     saveUninitialized: true,

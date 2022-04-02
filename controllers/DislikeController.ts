@@ -39,6 +39,7 @@ export default class DislikeController implements DislikeControllerI {
             app.get("/api/users/:uid/dislikes", DislikeController.dislikeController.findAllTuitsDislikedByUser);
             app.get("/api/tuits/:tid/dislikes", DislikeController.dislikeController.findAllUsersThatDislikedTuit);
             app.put("/api/users/:uid/dislikes/:tid", DislikeController.dislikeController.userTogglesTuitDislikes);
+            app.get("/api/users/:uid/dislikes/:tid", DislikeController.dislikeController.userAlreadyDislikedTuit);
         }
         return DislikeController.dislikeController;
     }
@@ -67,6 +68,9 @@ export default class DislikeController implements DislikeControllerI {
         const uid = req.params.uid;
         // @ts-ignore
         const profile = req.session['profile'];
+        if(uid === "me" && !profile){
+            res.sendStatus(403);
+        }
         const userId = uid === "me" && profile ?
             profile._id : uid;
 
@@ -92,8 +96,12 @@ export default class DislikeController implements DislikeControllerI {
         const tuitDao = DislikeController.tuitDao;
         const uid = req.params.uid;
         const tid = req.params.tid;
+
         // @ts-ignore
         const profile = req.session['profile'];
+        if(uid === "me" && !profile){
+            res.sendStatus(403);
+        }
         const userId = uid === "me" && profile ?
             profile._id : uid;
         try {
@@ -112,5 +120,20 @@ export default class DislikeController implements DislikeControllerI {
         } catch (e) {
             res.sendStatus(404);
         }
+    }
+
+    userAlreadyDislikedTuit = (req: Request, res: Response)=> {
+        const uid = req.params.uid;
+        const tid = req.params.tid;
+        // @ts-ignore
+        const profile = req.session['profile'];
+        if(uid === "me" && !profile){
+            res.sendStatus(403);
+        }
+
+        const userId = uid === "me" && profile ?
+            profile._id : uid;
+        DislikeController.dislikeDao.findUserDislikesTuit(userId, tid)
+            .then((dislike) => res.json(dislike))
     }
 };
