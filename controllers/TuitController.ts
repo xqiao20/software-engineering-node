@@ -80,6 +80,7 @@ export default class TuitController implements TuitControllerI {
             // @ts-ignore
             req.session['profile']._id : req.params.uid;
 
+        console.log(userId);
         if (userId === "me") {
             res.sendStatus(503);
             return;

@@ -109,10 +109,10 @@ export default class DislikeController implements DislikeControllerI {
             const howManyDislikedTuit = await dislikeDao.countHowManyDislikedTuit(tid);
             let tuit = await tuitDao.findTuitById(tid);
             if (userAlreadyDislikedTuit) {
-                await dislikeDao.userUnDislikesTuit(tid, userId);
+                await dislikeDao.userUnDislikesTuit(userId, tid);
                 tuit.stats.dislikes = howManyDislikedTuit - 1;
             } else {
-                await DislikeController.dislikeDao.userDislikesTuit(tid, userId);
+                await DislikeController.dislikeDao.userDislikesTuit(userId, tid);
                 tuit.stats.dislikes = howManyDislikedTuit + 1;
             };
             await tuitDao.updateDislikes(tid, tuit.stats);
