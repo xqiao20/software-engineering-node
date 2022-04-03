@@ -10,14 +10,16 @@ import TuitDao from "../daos/TuitDao";
  * @class TuitController Implements RESTful Web service API for Dislikes resource.
  * Defines the following HTTP endpoints:
  * <ul>
- *     <li>GET /api/users/:uid/Dislikes to retrieve all the tuits Disliked by a user
+ *     <li>GET /api/users/:uid/dislikes to retrieve all the tuits Disliked by a user
  *     </li>
- *     <li>GET /api/tuits/:tid/Dislikes to retrieve all users that Disliked a tuit
+ *     <li>GET /api/tuits/:tid/dislikes to retrieve all users that Disliked a tuit
  *     </li>
- *     <li>POST /api/users/:uid/Dislikes/:tid to record that a user Dislikes a tuit
+ *     <li>POST /api/users/:uid/dislikes/:tid to record that a user Dislikes a tuit
  *     </li>
  *     <li>DELETE /api/users/:uid/unDislikes/:tid to record that a user
  *     no londer Dislikes a tuit</li>
+ *     <li>GET /api/users/:uid/dislikes/:tid to get record if a user dislikes a tuit
+ *     </li>
  * </ul>
  * @property {DislikeDao} DislikeDao Singleton DAO implementing Dislikes CRUD operations
  * @property {DislikeController} DislikeController Singleton controller implementing
@@ -123,6 +125,14 @@ export default class DislikeController implements DislikeControllerI {
             res.sendStatus(404);
         }
     }
+
+    /**
+     * @param {Request} req Represents request from client, including the
+     * path parameters uid and tid representing the user that is disliking the tuit
+     * and the tuit being liked
+     * @param {Response} res Represents response to client, including the
+     * body formatted as JSON containing the user dislikes the tuit
+     */
 
     userAlreadyDislikedTuit = (req: Request, res: Response)=> {
         const uid = req.params.uid;

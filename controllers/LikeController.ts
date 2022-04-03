@@ -18,6 +18,8 @@ import TuitDao from "../daos/TuitDao";
  *     </li>
  *     <li>DELETE /api/users/:uid/unlikes/:tid to record that a user
  *     no londer likes a tuit</li>
+ *     <li>GET /api/users/:uid/likes/:tid to get record if a user likes a tuit
+ *     </li>
  * </ul>
  * @property {LikeDao} likeDao Singleton DAO implementing likes CRUD operations
  * @property {LikeController} LikeController Singleton controller implementing
@@ -125,6 +127,13 @@ export default class LikeController implements LikeControllerI {
         }
     }
 
+    /**
+     * @param {Request} req Represents request from client, including the
+     * path parameters uid and tid representing the user that is liking the tuit
+     * and the tuit being liked
+     * @param {Response} res Represents response to client, including the
+     * body formatted as JSON containing the user likes the tuit
+     */
     userAlreadyLikedTuit = (req: Request, res: Response) => {
         const uid = req.params.uid;
         const tid = req.params.tid;
